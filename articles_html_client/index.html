@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles HTML client</title>
+</head>
+<body onLoad="loadData()">
+    <h2>Articles client</h2>
+
+    <div id="articles"></div>
+
+    <script>
+        async function loadData(){
+            var url = "http://localhost:4000/articles"
+            var response = await fetch(url, {headers: {'Accept': 'application/json'}})
+            var data = await response.json()
+            var div = ''
+
+             for(var i=0; i < data.length; i++){
+                var completed = "not completed"
+                if (data[i].completed){
+                    completed = "completed"
+                }
+                div += completed + ' ' + data[i]['title'] + "<br /><br />" + data[i]['body'] + "<br /><br />" 
+
+                document.getElementById("articles").innerText = div
+               
+        }
+    }
+    </script>
+    
+</body>
+</html>
