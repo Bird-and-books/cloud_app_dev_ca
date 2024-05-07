@@ -1,12 +1,11 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
-import ArticlesList from './components/ArticlesList';
+import "./App.css";
+import ArticlesList from "./components/ArticlesList";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
-import Home from "./views/Home.js";
-import Blog from "./views/Blog.js";
+import NewArticle from "./components/NewArticle.jsx";
 import FullArticle from "./views/FullArticle.js";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
       </Router>
     </div>
       <ArticlesList />
-
     </div>
   );
 }

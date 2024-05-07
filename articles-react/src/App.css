@@ -107,13 +107,6 @@ code {
 }
 /*! HOME PAGE start **/
 /** first screen **/
-.screen1-bg {
-  height: 100vh;
-  position: relative;
-  background-image: url('./images/bg_section_1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 .screen1-motto {
   position: absolute;

@@ -19,7 +19,7 @@
     "@testing-library/user-event": "^13.5.0",
     "vitest": "^1.6.0"
   },
-    "scripts": {
+  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
