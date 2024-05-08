@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-function NewArticle() {
+function NewArticleForm() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -89,4 +89,4 @@ function NewArticle() {
 }
 
  
-export default NewArticle;
+export default NewArticleForm;

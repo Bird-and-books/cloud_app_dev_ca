@@ -1,5 +1,5 @@
 {
-  "name": "articles-react",
+  "name": "articles_react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,16 +15,14 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^15.0.7",
-    "@testing-library/user-event": "^13.5.0",
-    "vitest": "^1.6.0"
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

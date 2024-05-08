@@ -1,5 +1,5 @@
 
-import Form from "../components/NewArticle";
+import Form from "../components/NewArticleForm";
 
 
 function Home() {
@@ -7,8 +7,6 @@ function Home() {
     <div className="home-page">
       <div className="screen1-bg">
       </div>
-
-   
 
       <div className="discount-section">
         
