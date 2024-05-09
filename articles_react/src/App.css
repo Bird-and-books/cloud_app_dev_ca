@@ -281,3 +281,11 @@ textarea.formInput{
     height: 18px;
   }
 }
+
+.NoArticle {
+  font-size: large;
+  font-weight: 800;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}

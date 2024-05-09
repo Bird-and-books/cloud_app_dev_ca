@@ -41,8 +41,10 @@ function ArticlesList() {
         />
       </div>
 
-      {fQty === aQty && ? (
-        <ul>
+      {fQty === aQty && aQty === 0 && <p className="NoArticle">{"There are no articles to show"}</p>}
+      {fQty < aQty && fQty === 0
+        ? <p className="NoArticle">{"There are no published articles to show"}</p>
+        :(<ul>
           {filteredArt?.map((article, index) => (
             <li key={index}>
               <Link to={`/articles/${article.id}`}>
@@ -51,8 +53,6 @@ function ArticlesList() {
             </li>
           ))}
         </ul>
-      ) : (
-        <p>{"no published articles"}</p>
       )}
     </div>
   );
