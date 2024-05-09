@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { post } from '../api';
 
 function NewArticleForm() {
 
@@ -21,19 +22,19 @@ function NewArticleForm() {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm }) => {
-        setIsSubmitted(true);
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      setIsSubmitted(true);
         
-        console.log(values);
+      console.log(values);
+      await post(values)
         
       resetForm();
-      // axios POST
-      setTimeout(() => setSubmitting(false), 1000);
+      setSubmitting(false);
   }});
 
   const getFormikValidationErrorHandler = (formik) => (field) =>
     formik.touched[field] && formik.errors[field] ? (
-      <div className="formError" data-testId="error-block">
+      <div className="formError" data-testd="error-block">
         <span className="">{formik.errors[field]}</span>
       </div>
     ) : null;
@@ -59,28 +60,28 @@ function NewArticleForm() {
         {handleValidationError("title")}
 
         <label htmlFor="text" className="formLabel">Enter text here</label>
-        <input
+        <textarea
           name="text"
           placeholder="Here should be your text"
           className="formInput"
-          type="textarea"
           {...formik.getFieldProps("body")}
         />
         {handleValidationError("body")}
 
-        <label htmlFor="publishStatus" className="formLabel">Should be published?</label>
-        <input
-          name="publishStatus"
-          className="formInput"
-          type="checkbox"
-          {...formik.getFieldProps("published")}
-        />
+        <div className="formPublishBlock">
+          <label htmlFor="publishStatus" className="formLabel">Should be published?</label>
+          <input
+            id="publishStatus"
+            type="checkbox"
+            {...formik.getFieldProps("published")}
+            />
+        </div>
 
         <div className="formBtnPlace">
           <button
             type="submit"
             className="buttons"
-            data-testId="article-submit-btn"
+            data-testid="article-submit-btn"
           >Submit</button>
         </div>
       </form>

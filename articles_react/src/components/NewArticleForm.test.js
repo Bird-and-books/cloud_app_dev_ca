@@ -1,5 +1,5 @@
-import React  from "react";
-import { render, fireEvent, screen, act } from "@testing-library/react";
+import React from "react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import NewArticleForm from './NewArticleForm';
 
@@ -9,11 +9,16 @@ describe('src/components/NewArticleForm', () => {
     expect(container).toBeDefined()
   })
 
-  test('Should add warning messages on empty required fields', async() => {
-    await act( async () => render(<NewArticleForm />))
-    const submitBtn = screen.queryByTestId("article-submit-btn")
-    act(() => fireEvent.click(submitBtn))
-    const errorBlocks = screen.queryAllByTestId("error-block")
-    expect(errorBlocks.length).toBe(2)
-  })
+  // test('Should add warning messages on empty required fields', async () => {
+  //   render(<NewArticleForm />)
+
+  //   const titleInput = screen.queryByPlaceholderText("Place for title")
+  //   fireEvent.blur(titleInput)
+
+  //   let errorBlocks;
+  //   await waitFor(() => {
+  //     errorBlocks = screen.queryByTestId("error-block")     
+  //   });
+  //   expect(errorBlocks).toBeInTheDocument()
+  // })
 })

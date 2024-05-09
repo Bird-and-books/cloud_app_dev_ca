@@ -1,42 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import axios from 'axios';
-import Article from './Article';
-import { Link } from 'react-router-dom';
+import Article from "./Article";
+import { Link } from "react-router-dom";
+import { getAll } from "../api";
 
 function ArticlesList() {
-    const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const [filteredArt, setFilteredArt] = useState([]);
 
-    async function fetchArticles() {
-        try {
-            const response = await fetch("http://localhost:4000/articles/", {
-                headers: { Accept: "application/json" }
-            });
-            const data = await response.json();
-            setArticles(data);
-            
-            console.log(data)
+  const fetchArticles = async () => {
+    const { result } = await getAll();
+    setArticles(result || []);
+    setFilteredArt(result || []);
+  };
 
-        } catch (error) {
-            console.error("Failed to fetch articles", error);
-        }
-    }
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
-    useEffect(() => {
-        fetchArticles();
-    }, []);
-        
-    return(
-        <div>
-            <ul>
-                {articles.map((article, index) => (
-                    <li key={index}>
-                    <Link to={`/articles/${article.id}`}>
-                        <Article title={article.title} />
-                    </Link>  
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
+  const filterArticles = (e) => {
+    const isSelected = e.target.checked;
+    const filtered = isSelected
+      ? articles?.filter((a) => a?.published) || []
+      : articles;
+    setFilteredArt(filtered);
+  };
+
+  const fQty = filteredArt.length;
+  const aQty = articles.length;
+
+  return (
+    <div className="articleListWrapper">
+      <div className="filter_checkbox">
+        <label htmlFor="filter"> Show only published articles </label>
+        <input
+          id="filter"
+          type="checkbox"
+          onChange={filterArticles}
+          defaultChecked={false}
+        />
+      </div>
+
+      {fQty === aQty && ? (
+        <ul>
+          {filteredArt?.map((article, index) => (
+            <li key={index}>
+              <Link to={`/articles/${article.id}`}>
+                <Article title={article.title} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>{"no published articles"}</p>
+      )}
+    </div>
+  );
 }
 export default ArticlesList;

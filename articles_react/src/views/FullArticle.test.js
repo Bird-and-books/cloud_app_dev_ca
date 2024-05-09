@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import FullArticle from './FullArticle';
 
 test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/List of Articles/i);
+  render(<FullArticle />);
+  const linkElement = screen.getByText('Article not found.');
   expect(linkElement).toBeInTheDocument();
 });
