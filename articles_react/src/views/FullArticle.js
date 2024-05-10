@@ -43,13 +43,17 @@ function FullArticle() {
     {isLoading && (<div>{"Article is loading" }</div>)}
     {!article ? <p>Article not found.</p>
       : (
-      <div className="fullArticle">
+      <div className="fullArticle blogContainer">
+        <div>
         <h2>{article.title}</h2>
         <p className="articleDate">{article.body}</p>
-        <p>{article.published ? 'published' : 'not published'}</p>
-        <button onClick={handleUpdate}>Update</button>
-        <button onClick={handleDelete}>Delete</button>
-        <Link to="/" className="buttons">Back to List of Articles</Link>
+        <div className="m-2">{article.published ? 'published' : 'not published'}</div>
+        <div className="m-2">
+        <button className="buttons-p me-2" onClick={handleUpdate}>Update</button> 
+        <button className="buttons-p ms-2" onClick={handleDelete}>Delete</button> 
+        <div><Link to="/" className="buttons-p mt-2" >Back to List of Articles</Link></div>
+        </div>
+        </div>
       </div>)
       }
   </>);

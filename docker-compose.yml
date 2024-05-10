@@ -1,0 +1,27 @@
+version: '3'
+services:
+  rails_app:
+    build:
+      context: /Users/admin/Repos/CloudAppDev/CA/Articles
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: rails_react_app_development
+      MYSQL_USER: rails_user
+      MYSQL_PASSWORD: rails_password
+    ports:
+      - "3306:3306"
+  react_client:
+    build:
+      context: /Users/admin/Repos/CloudAppDev/CA/articles_react
+      dockerfile: Dockerfile
+
+    ports:
+      - "3000"

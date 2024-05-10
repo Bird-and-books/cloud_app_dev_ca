@@ -2,7 +2,7 @@ import React from 'react';
 
 function Article(props) {
      return (
-         <div>
+         <div className="">
              <h3>{props.title}</h3>
          </div>
      );
