@@ -47,7 +47,7 @@ jobs:
                     command: |
                         bundle exec rails db:create
                         bundle exec rails db:migrate
-                        bundle exec rails server -b 0.0.0.0
+                        bundle exec rails server --binding 0.0.0.0 -p 4000
     start_client:
         working_directory: ~/CA/Articles/articles_react
         docker:
