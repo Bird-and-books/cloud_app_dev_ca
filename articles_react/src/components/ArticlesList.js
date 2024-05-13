@@ -1,60 +1,54 @@
-import React, { useState, useEffect } from "react";
-// import axios from 'axios';
-import Article from "./Article";
-import { Link } from "react-router-dom";
-import { getAll } from "../api";
+import React, { useState, useEffect } from "react"
+import Article from "./Article"
+import { Link } from "react-router-dom"
+import { getAll } from "../api"
 
 function ArticlesList() {
-  const [articles, setArticles] = useState([]);
-  const [filteredArt, setFilteredArt] = useState([]);
+  const [articles, setArticles] = useState([])
+  const [isPubOnly, setIsPubOnly] = useState(false)
 
   const fetchArticles = async () => {
-    const { result } = await getAll();
-    setArticles(result || []);
-    setFilteredArt(result || []);
-  };
+    const { result } = await getAll()
+    setArticles(result || [{ id: 1, title: "asd" }])
+  }
 
   useEffect(() => {
-    fetchArticles();
-  }, []);
+    fetchArticles()
+  }, [])
 
-  const filterArticles = (e) => {
-    const isSelected = e.target.checked;
-    const filtered = isSelected
-      ? articles?.filter((a) => a?.published) || []
-      : articles;
-    setFilteredArt(filtered);
-  };
-
-  const fQty = filteredArt.length;
-  const aQty = articles.length;
+  const filtered = articles?.filter((a) => (isPubOnly ? a.published : true))
+  const fQty = filtered.length
+  const aQty = articles.length
 
   return (
-    <div className="articleListWrapper">
-      <div className="filter_checkbox">
-        <label htmlFor="filter"> Show only published articles </label>
-        <input
-          id="filter"
-          type="checkbox"
-          onChange={filterArticles}
-          defaultChecked={false}
-        />
-      </div>
+    <div className='articleListWrapper'>
+      <button
+        className={"buttons filterButton"}
+        onClick={() => setIsPubOnly(!isPubOnly)}>
+        {`Show ${isPubOnly ? "All" : "Published"}`}
+      </button>
 
-      {fQty === aQty && aQty === 0 && <p className="NoArticle">{"There are no articles to show"}</p>}
-      {fQty < aQty && fQty === 0
-        ? <p className="NoArticle">{"There are no published articles to show"}</p>
-        :(<ul>
-          {filteredArt?.map((article, index) => (
-            <li key={index}>
-              <Link to={`/articles/${article.id}`}>
-                <Article title={article.title} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {aQty === 0 && (
+        <p className='articleCenter'>{"There are no articles to show"}</p>
+      )}
+      {fQty < aQty && fQty === 0 ? (
+        <p className='articleCenter'>
+          {"There are no published articles to show"}
+        </p>
+      ) : (
+        <div className='articleCenter'>
+          <ul>
+            {filtered.map((article, index) => (
+              <li key={index}>
+                <Link to={`/articles/${article.id}`}>
+                  <Article title={article.title} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
-  );
+  )
 }
-export default ArticlesList;
+export default ArticlesList

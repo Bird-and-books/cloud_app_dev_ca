@@ -12,6 +12,8 @@
 
   --faq-btn-width: 100px;
   --spacing: 15px;
+  --svg: 20px;
+  --svg-btn-p: 10px;
 }
 
 body {
@@ -60,30 +62,31 @@ code {
 
 .buttons {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 20px;
   color: #fff;
   background-color: var(--main-color);
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .buttons:hover {
   background-color: var(--fonts-color);
 }
 
-.buttons-p {
-  display: inline-block;
-  padding: 3px 20px;
-  color: #fff;
-  background-color: var(--main-color);
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.2s ease-in-out;
-}
+.buttons-svg {
+  line-height: 0;
+  padding: var(--svg-btn-p);
+  width: calc( var(--svg-btn-p) * 2 + var(--svg));
+  height: calc( var(--svg-btn-p) * 2 + var(--svg));
 
-.buttons-p:hover {
-  background-color: var(--fonts-color);
+  & svg {
+    width: var(--svg);
+    height: var(--svg);
+  }
 }
 
 
@@ -153,7 +156,7 @@ textarea.formInput{
   padding: var(--spacing) 30px;
   position: relative;
   margin-top: var(--spacing);
- 
+
 }
 .formBtnPlace {
   display: flex;
@@ -166,54 +169,25 @@ textarea.formInput{
 }
 
 
-/*Blog page*/
-.blogContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin: 10px;
-}
-
-.blogArticle {
-  flex: 1 1 calc(33.333% - 20px);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
 .fullArticle{
-  flex: 1 1 calc(33.333% - 20px);
-  border-radius: 8px;
   padding: 20px;
 }
 
-.blogArticle:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+.buttonsBlock {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: top ;
 }
 
-.articleHeader {
-  line-height: initial;
-  margin-bottom: var(--spacing);
-  padding-top: var(--spacing);
-  color: var(--main-branding-color);
-}
 
-.articleDate {
+.articleBody {
   color: #666;
   font-size: 0.85em;
   margin-bottom: 10px;
 }
 
-.articleMore {
-  background: none;
-  border: none;
-  padding: var(--spacing) 0;
-  color: var(--main-branding-color);
-}
-
-/*! BLOG end **/
+/*! ArticleList */
 .articleListWrapper {
   padding: 0 20px;
 }
@@ -225,7 +199,7 @@ textarea.formInput{
 
   & label {
     margin-right: 5px;
-  } 
+  }
 
   & input {
     width: 18px;
@@ -233,10 +207,16 @@ textarea.formInput{
   }
 }
 
-.NoArticle {
+.articleCenter {
   font-size: large;
   font-weight: 800;
   display: flex;
   align-self: center;
   justify-content: center;
+  padding-top: 15px;
+}
+
+.filterButton {
+  margin-top: 15px;
+  width: 170px;
 }
